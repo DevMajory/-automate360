@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automate 360 | Solução de Prospecção Gerenciada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #2563eb;
+            --success: #10b981;
+            --error: #ef4444;
+            --text: #334155;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --gold: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--light); scroll-behavior: smooth; }
+
+        .section { padding: 100px 20px; display: flex; justify-content: center; border-bottom: 1px solid var(--border); }
+        .container { max-width: 1100px; width: 100%; }
+
+        /* Typography */
+        h1 { font-size: 3.8rem; color: var(--primary); font-weight: 800; line-height: 1.1; margin-bottom: 24px; letter-spacing: -1px; }
+        h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; text-align: center; font-weight: 700; }
+        .subtitle { font-size: 1.2rem; color: #64748b; text-align: center; max-width: 800px; margin: 0 auto 50px; }
+        p { font-size: 1.1rem; line-height: 1.6; }
+        .badge { background: #dbeafe; color: var(--accent); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
+
+        /* Grid System */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        /* Cards */
+        .card { background: white; padding: 40px; border-radius: 20px; border: 1px solid var(--border); transition: 0.3s; height: 100%; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05); }
+
+        /* Comparison Section */
+        .comparison-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .email-box { border-radius: 16px; padding: 30px; position: relative; font-size: 0.95rem; border: 1px solid var(--border); height: 100%; }
+        .email-box.old { background: #fff1f2; border-top: 6px solid var(--error); }
+        .email-box.new { background: #f0fdf4; border-top: 6px solid var(--success); box-shadow: 0 10px 15px rgba(16, 185, 129, 0.1); }
+        .tag-status { position: absolute; top: 15px; right: 20px; padding: 4px 12px; border-radius: 12px; font-weight: bold; font-size: 0.75rem; }
+        .tag-error { background: var(--error); color: white; }
+        .tag-success { background: var(--success); color: white; }
+        .highlight-text { background: #dcfce7; color: #166534; font-weight: 600; padding: 2px 4px; border-radius: 4px; }
+
+        /* Dashboard Focus Section */
+        .dashboard-feature { background: var(--primary); color: white; border-radius: 24px; padding: 60px; margin-top: 50px; }
+        .sheet-mockup { background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .sheet-header { background: #f1f5f9; padding: 10px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; border-bottom: 1px solid #cbd5e1; }
+        .sheet-cell { background: white; height: 20px; border-radius: 4px; }
+
+        /* Support Section */
+        .support-banner { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 60px; border-radius: 24px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+
+        /* CTA */
+        .btn { background: var(--accent); color: white; padding: 20px 45px; border-radius: 12px; text-decoration: none; font-weight: 700; display: inline-block; transition: 0.3s; border: none; font-size: 1.1rem; }
+        .btn:hover { transform: scale(1.02); background: #1d4ed8; }
+
+        @media (max-width: 900px) {
+            h1 { font-size: 2.8rem; }
+            .grid-2, .comparison-container, .support-banner { grid-template-columns: 1fr; flex-direction: column; }
+            .dashboard-feature { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="section">
+        <div class="container" style="text-align: center;">
+            <span class="badge">Estratégia & Tecnologia B2B</span>
+            <h1>Sua Prospecção com Cérebro, Dados e Controle Total.</h1>
+            <p class="subtitle">A Automate 360 não é apenas um disparador de mensagens. Somos a sua equipe técnica e estratégica que constrói uma máquina previsível de novas reuniões.</p>
+            <a href="#solucao" class="btn">Explorar o Modelo Automate 360</a>
+        </div>
+    </section>
+
+    <section class="section" id="solucao" style="background: white;">
+        <div class="container">
+            <h2>Não é sobre volume, é sobre <span style="color: var(--success)">Relevância</span></h2>
+            <p class="subtitle">Veja por que o nosso índice de resposta é até 15x superior ao mercado tradicional.</p>
+            
+            <div class="comparison-container">
+                <div class="email-box old">
+                    <span class="tag-status tag-error">PROSPECÇÃO COMUM</span>
+                    <p><strong>De:</strong> Vendas Genéricas<br>
+                    <strong>Assunto:</strong> Apresentação de Serviços</p><br>
+                    <p>"Olá, tudo bem? Somos especialistas em logística e temos os melhores preços. Podemos agendar uma conversa para eu apresentar nossa empresa?"</p><br>
+                    <p style="color: var(--error); font-weight: 700;">Status: Ignorado ou Bloqueado</p>
+                </div>
+
+                <div class="email-box new">
+                    <span class="tag-status tag-success">MÉTODO AUTOMATE 360</span>
+                    <p><strong>De:</strong> Sua Empresa<br>
+                    <strong>Assunto:</strong> Uma pergunta sobre a {{Empresa_Lead}}</p><br>
+                    <p>"Olá, {{Nome}}.<br><br>
+                    <span class="highlight-text">Vi no site de vocês que acabaram de abrir um novo CD em Jundiaí...</span><br><br>
+                    Notei que para empresas com esse ritmo de expansão, o gargalo X costuma aparecer. Foi por isso que entrei em contato..."</p><br>
+                    <p style="color: var(--success); font-weight: 700;">Status: Interesse Real e Resposta</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="grid-2">
+                <div>
+                    <span class="badge" style="background: #ecfdf5; color: #059669;">Controle na sua mão</span>
+                    <h2 style="text-align: left;">Sua Base de Prospecção em Google Sheets</h2>
+                    <p>Esqueça sistemas complexos. Você terá acesso a uma <strong>Planilha Inteligente de Alta Performance</strong>, onde cada linha é um lead qualificado pela nossa IA.</p>
+                    <ul style="list-style: none; margin-top: 20px;">
+                        <li style="margin-bottom: 15px;">✅ <strong>Fácil Acesso:</strong> Controle total via Google Sheets (Web ou Mobile).</li>
+                        <li style="margin-bottom: 15px;">✅ <strong>Visões Estratégicas:</strong> Dados que mostram exatamente quem abriu, quem respondeu e quem agendou.</li>
+                        <li style="margin-bottom: 15px;">✅ <strong>Decisões Baseadas em Dados:</strong> Saiba qual cargo ou setor está convertendo mais para o seu negócio.</li>
+                    </ul>
+                </div>
+                <div class="dashboard-feature">
+                    <div class="sheet-mockup">
+                        <div class="sheet-header">
+                            <div class="sheet-cell" style="background: #cbd5e1; height: 10px;"></div>
+                            <div class="sheet-cell" style="background: #cbd5e1; height: 10px;"></div>
+                            <div class="sheet-cell" style="background: #cbd5e1; height: 10px;"></div>
+                            <div class="sheet-cell" style="background: #cbd5e1; height: 10px;"></div>
+                        </div>
+                        <div style="padding: 15px;">
+                            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                                <div style="width: 40%; height: 12px; background: #e2e8f0; border-radius: 4px;"></div>
+                                <div style="width: 20%; height: 12px; background: #dcfce7; border-radius: 4px;"></div>
+                                <div style="width: 40%; height: 12px; background: #f1f5f9; border-radius: 4px;"></div>
+                            </div>
+                            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                                <div style="width: 40%; height: 12px; background: #e2e8f0; border-radius: 4px;"></div>
+                                <div style="width: 20%; height: 12px; background: #fef9c3; border-radius: 4px;"></div>
+                                <div style="width: 40%; height: 12px; background: #f1f5f9; border-radius: 4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 20px; text-align: center;">Simples de usar. Poderoso para decidir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <div class="container">
+            <div class="support-banner">
+                <div style="flex: 1;">
+                    <h2 style="text-align: left; color: white;">Equipe de Tecnologia Pronta para te Apoiar</h2>
+                    <p style="color: #cbd5e1;">Você não contrata um software e fica sozinho. Você contrata uma equipe que cuida de toda a engenharia por trás dos envios.</p>
+                    <ul style="list-style: none; margin-top: 20px; color: #cbd5e1;">
+                        <li>🚀 <strong>Atualizações Constantes:</strong> Novas tecnologias de IA aplicadas mensalmente.</li>
+                        <li>🛡️ <strong>Higiene de Dados:</strong> Monitoramento contínuo de erros e bounces.</li>
+                        <li>💡 <strong>Suporte Técnico:</strong> Dúvidas sobre o fluxo? Nosso time resolve.</li>
+                    </ul>
+                </div>
+                <div style="text-align: center; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);">
+                    <p style="color: var(--gold); font-size: 2rem; font-weight: 800; margin-bottom: 5px;">100%</p>
+                    <p style="font-size: 0.9rem; color: white;">Gerenciado por Especialistas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="border: none;">
+        <div class="container" style="text-align: center;">
+            <h2>Pare de "tentar" vender. Comece a ter agenda.</h2>
+            <p class="subtitle">O modelo Automate 360 é o braço direito que o seu time comercial precisa para focar apenas no fechamento de contratos.</p>
+            <a href="#" class="btn">Agendar Diagnóstico de Prospecção</a>
+            <p style="margin-top: 60px; font-size: 0.8rem; opacity: 0.5;">Automate 360 | © 2026 - Tecnologia e Estratégia B2B</p>
+        </div>
+    </section>
+
+</body>
+</html>
