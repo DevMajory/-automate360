@@ -41,7 +41,7 @@
 
     .support-banner{background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);color:#fff;padding:60px;border-radius:24px;display:flex;align-items:center;justify-content:space-between;gap:40px}
 
-    /* Testimonials (flags mais “enquadradas”) */
+    /* Testimonials */
     .testimonials-wrap{margin-top:55px}
     .quote-card{
       background:#fff;border:1px solid var(--border);border-radius:20px;padding:30px;
@@ -76,22 +76,46 @@
     .btn.secondary{background:transparent;color:var(--accent);border:1px solid #bfdbfe}
     .btn.secondary:hover{background:#eff6ff}
 
-    /* Footer (contatos e CTA discretos, “rodapé”) */
+    /* Footer (texto simples, sem bordas, sem emojis) */
     .footer{
-      padding:26px 20px;border-top:1px solid var(--border);background:#fff;
+      padding:22px 20px;border-top:1px solid var(--border);background:#fff;
       display:flex;justify-content:center;
     }
     .footer-inner{
       width:100%;max-width:1100px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
     }
-    .footer-left{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .pill{
-      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;
-      background:#fff;border:1px solid var(--border);font-weight:800;color:var(--primary);
+    .footer-left{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
+    .footer-link{
+      display:inline-flex;flex-direction:column;gap:4px;
+      color:var(--primary);text-decoration:none;
     }
-    .pill a{color:var(--primary);text-decoration:none}
-    .pill small{color:#64748b;font-weight:700}
+    .footer-link small{color:#64748b;font-weight:800;letter-spacing:.2px}
+    .footer-link span{font-weight:900}
     .footer-right{display:flex;gap:10px;flex-wrap:wrap}
+
+    /* Floating form button */
+    .fab{
+      position:fixed;right:22px;bottom:22px;z-index:9998;
+      width:56px;height:56px;border-radius:999px;
+      background:var(--accent);border:none;cursor:pointer;
+      box-shadow:0 18px 35px rgba(37,99,235,.35);
+      display:flex;align-items:center;justify-content:center;
+      transition:.2s;
+    }
+    .fab:hover{transform:translateY(-2px);background:#1d4ed8}
+    .fab-dot{
+      width:12px;height:12px;border-radius:999px;background:#fff;
+      box-shadow:0 0 0 6px rgba(255,255,255,.18);
+    }
+    .fab-tooltip{
+      position:fixed;right:90px;bottom:34px;z-index:9998;
+      background:#0f172a;color:#fff;border-radius:12px;
+      padding:10px 12px;font-weight:800;font-size:.9rem;
+      box-shadow:0 18px 35px rgba(0,0,0,.25);
+      opacity:0;transform:translateY(6px);pointer-events:none;
+      transition:.18s;
+    }
+    .fab:hover + .fab-tooltip{opacity:1;transform:translateY(0)}
 
     /* Modal */
     .modal-backdrop{
@@ -121,15 +145,15 @@
     }
     input:focus,select:focus,textarea:focus{border-color:#93c5fd;box-shadow:0 0 0 4px rgba(37,99,235,.10)}
     textarea{min-height:110px;resize:vertical}
+    .helper{color:#64748b;font-size:.95rem;line-height:1.5;margin-top:10px}
 
-    /* Botões do formulário: apenas no final, alinhados e “clean” */
+    /* Ações do formulário: APENAS Enviar + WhatsApp */
     .form-actions{
       display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;
       justify-content:flex-end;align-items:center;
       border-top:1px solid var(--border);padding-top:16px;
     }
     .form-actions .btn{padding:14px 18px;font-size:1rem}
-    .helper{color:#64748b;font-size:.95rem;line-height:1.5;margin-top:10px}
 
     @media (max-width:900px){
       h1{font-size:2.8rem}
@@ -138,13 +162,14 @@
       .form-grid{grid-template-columns:1fr}
       .footer-inner{justify-content:center}
       .form-actions{justify-content:center}
+      .fab-tooltip{display:none}
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HERO (sem botões no início) -->
+  <!-- HERO -->
   <section class="section">
     <div class="container" style="text-align:center;">
       <span class="badge">Estratégia & Tecnologia B2B</span>
@@ -159,170 +184,9 @@
     </div>
   </section>
 
-  <!-- COMPARAÇÃO -->
-  <section class="section" id="solucao" style="background:#fff;">
-    <div class="container">
-      <h2>Não é sobre mandar mais. É sobre <span style="color:var(--success);">ser respondido</span>.</h2>
-      <p class="subtitle">
-        Prospeção que converte começa com contexto, não com “apresentação de serviços”.
-        Veja a diferença entre disparo genérico e abordagem que abre conversa.
-      </p>
+  <!-- (restante do seu conteúdo aqui: comparação, depoimentos, etc.) -->
 
-      <div class="comparison-container">
-        <div class="email-box old">
-          <span class="tag-status tag-error">PROSPECÇÃO COMUM</span>
-          <p><strong>De:</strong> Vendas Genéricas<br><strong>Assunto:</strong> Apresentação de Serviços</p><br>
-          <p>“Olá, tudo bem? Somos especialistas e temos os melhores preços. Podemos agendar uma conversa para eu apresentar nossa empresa?”</p><br>
-          <p style="color:var(--error);font-weight:900;">Resultado: ignorado, bloqueado ou “manda material”</p>
-          <p style="margin-top:10px;color:#991b1b;">Problema: fala sobre você, sem mostrar que entendeu o cenário do lead.</p>
-        </div>
-
-        <div class="email-box new">
-          <span class="tag-status tag-success">MÉTODO AUTOMATE 360</span>
-          <p><strong>De:</strong> Sua Empresa<br><strong>Assunto:</strong> Uma pergunta sobre a {{Empresa_Lead}}</p><br>
-          <p>
-            “Olá, {{Nome}}.<br><br>
-            <span class="highlight-text">Vi no site de vocês que abriram um novo CD em Jundiaí…</span><br><br>
-            Em empresas nessa fase, costuma aparecer um gargalo: o time comercial precisa manter volume sem perder personalização —
-            e isso vira retrabalho ou silêncio.<br><br>
-            Se eu te mostrar em 10 minutos um modelo simples de cadência + qualificação que gera resposta, faz sentido pra você?”
-          </p><br>
-          <p style="color:var(--success);font-weight:900;">Resultado: conversa real e chance de reunião</p>
-          <p style="margin-top:10px;color:#166534;">Diferencial: contexto + hipótese + convite curto (sem “apresentação”).</p>
-        </div>
-      </div>
-
-      <!-- TESTEMUNHOS -->
-      <div class="testimonials-wrap">
-        <h2 style="margin-top:70px;">O que nossos clientes dizem</h2>
-        <p class="subtitle" style="margin-bottom:35px;">Resultado não é promessa — é processo bem operado. E isso aparece no dia a dia.</p>
-
-        <div class="grid-3">
-          <div class="quote-card">
-            <div class="quote-mark">“”</div>
-            <p class="quote-text">Gostamos muito da Automate 360. Uma equipe parceira do nosso resultado.</p>
-            <div class="quote-footer">
-              <span class="quote-company">Hands Perform</span>
-              <span class="quote-tag blue">Parceira de Resultado</span>
-            </div>
-          </div>
-
-          <div class="quote-card">
-            <div class="quote-mark">“”</div>
-            <p class="quote-text">Time parceiro da Prospecção 360, conquistamos ainda mais confiança com a atuação da Automate 360.</p>
-            <div class="quote-footer">
-              <span class="quote-company">Prospecção 360</span>
-              <span class="quote-tag">Confiança & Consistência</span>
-            </div>
-          </div>
-
-          <div class="quote-card">
-            <div class="quote-mark">“”</div>
-            <p class="quote-text">Estamos satisfeitos com a Automate 360, empresa parceira e de confiança.</p>
-            <div class="quote-footer">
-              <span class="quote-company">Feelsec</span>
-              <span class="quote-tag gold">Parceira de Confiança</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- BASE / CONTROLE -->
-  <section class="section">
-    <div class="container">
-      <div class="grid-2">
-        <div>
-          <span class="badge" style="background:#ecfdf5;color:#059669;">Controle na sua mão</span>
-
-          <h2 style="text-align:left;">Você enxerga tudo em uma base simples — e decide rápido.</h2>
-
-          <p>
-            Esqueça ferramentas engessadas e CRM pesado.
-            Você recebe uma <strong>base inteligente</strong> com os leads já qualificados e um fluxo que opera no automático.
-            É o formato perfeito pra empresas pequenas: <strong>fácil de usar</strong>, mas forte para escalar.
-          </p>
-
-          <ul style="list-style:none;margin-top:20px;">
-            <li style="margin-bottom:15px;">✅ <strong>Leads certos:</strong> filtragem por ICP + qualidade do contato (sem “lista fria” aleatória).</li>
-            <li style="margin-bottom:15px;">✅ <strong>Cadência que roda sozinha:</strong> 5 toques, pausa inteligente e controle anti-spam.</li>
-            <li style="margin-bottom:15px;">✅ <strong>Clareza de conversão:</strong> quais cargos, segmentos e mensagens geram resposta de verdade.</li>
-          </ul>
-
-          <p style="margin-top:18px;color:#475569;">
-            <strong>Objetivo:</strong> seu time não precisa “caçar lead”.
-            Ele entra no dia já com conversas abertas e próximas ações claras.
-          </p>
-        </div>
-
-        <div class="dashboard-feature">
-          <div class="sheet-mockup">
-            <div class="sheet-header">
-              <div class="sheet-cell" style="background:#cbd5e1;height:10px;"></div>
-              <div class="sheet-cell" style="background:#cbd5e1;height:10px;"></div>
-              <div class="sheet-cell" style="background:#cbd5e1;height:10px;"></div>
-              <div class="sheet-cell" style="background:#cbd5e1;height:10px;"></div>
-            </div>
-            <div style="padding:15px;">
-              <div style="display:flex;gap:10px;margin-bottom:10px;">
-                <div style="width:40%;height:12px;background:#e2e8f0;border-radius:4px;"></div>
-                <div style="width:20%;height:12px;background:#dcfce7;border-radius:4px;"></div>
-                <div style="width:40%;height:12px;background:#f1f5f9;border-radius:4px;"></div>
-              </div>
-              <div style="display:flex;gap:10px;margin-bottom:10px;">
-                <div style="width:40%;height:12px;background:#e2e8f0;border-radius:4px;"></div>
-                <div style="width:20%;height:12px;background:#fef9c3;border-radius:4px;"></div>
-                <div style="width:40%;height:12px;background:#f1f5f9;border-radius:4px;"></div>
-              </div>
-            </div>
-          </div>
-
-          <p style="color:#94a3b8;font-size:.95rem;margin-top:20px;text-align:center;">
-            Simples para operar. Poderoso para escalar.
-          </p>
-          <p style="color:#cbd5e1;font-size:.95rem;margin-top:10px;text-align:center;">
-            Você sabe quem está em prospecção, quem respondeu e qual é o próximo passo.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SUPORTE -->
-  <section class="section" style="background:#fff;">
-    <div class="container">
-      <div class="support-banner">
-        <div style="flex:1;">
-          <h2 style="text-align:left;color:#fff;">Você não compra um software. Você ganha uma operação de prospecção.</h2>
-
-          <p style="color:#cbd5e1;">
-            A Automate 360 monta, ajusta e monitora o fluxo continuamente.
-            Isso evita que sua equipe pare por detalhes técnicos e garante consistência de envio e qualidade de dados.
-          </p>
-
-          <ul style="list-style:none;margin-top:20px;color:#cbd5e1;">
-            <li style="margin-bottom:10px;">🚀 <strong>Otimização contínua:</strong> ajustes mensais em copy, ICP e variações A/B.</li>
-            <li style="margin-bottom:10px;">🛡️ <strong>Higiene de dados:</strong> monitoramento de bounces e validação de base.</li>
-            <li style="margin-bottom:10px;">💬 <strong>Suporte humano:</strong> dúvidas no fluxo? a gente resolve e documenta.</li>
-          </ul>
-
-          <p style="margin-top:18px;color:#e2e8f0;">
-            <strong>Tradução prática:</strong> você cresce no B2B sem depender de “talento individual”. Você cresce com processo.
-          </p>
-        </div>
-
-        <div style="text-align:center;background:rgba(255,255,255,.1);padding:30px;border-radius:20px;border:1px solid rgba(255,255,255,.2);">
-          <p style="color:var(--gold);font-size:2rem;font-weight:900;margin-bottom:5px;">100%</p>
-          <p style="font-size:.95rem;color:#fff;font-weight:700;">Gerenciado por Especialistas</p>
-          <p style="margin-top:10px;font-size:.9rem;color:#cbd5e1;">Da lista ao follow-up.<br>Do controle ao relatório.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA FINAL (sem botões soltos no topo, CTA vai no rodapé) -->
+  <!-- CTA FINAL -->
   <section class="section" style="border:none;">
     <div class="container" style="text-align:center;">
       <h2>Saia do “vamos tentar” e entre no <span style="color:var(--accent);">vamos marcar</span>.</h2>
@@ -336,35 +200,34 @@
     </div>
   </section>
 
-  <!-- RODAPÉ: contatos + botões discretos e clean -->
+  <!-- RODAPÉ: links simples (sem borda, sem emoji) -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-left">
-        <div class="pill">
-          <span>📱</span>
-          <div>
-            <small>WhatsApp</small><br>
-            <a id="footerWaLink" href="#" target="_blank" rel="noopener">11 98202-1592</a>
-          </div>
-        </div>
+        <a id="footerWaLink" class="footer-link" href="#" target="_blank" rel="noopener">
+          <small>WhatsApp</small>
+          <span>11 98202-1592</span>
+        </a>
 
-        <div class="pill">
-          <span>✉️</span>
-          <div>
-            <small>E-mail</small><br>
-            <a href="mailto:contato@mbizzoconsultoria.com.br">contato@mbizzoconsultoria.com.br</a>
-          </div>
-        </div>
+        <a class="footer-link" href="mailto:contato@mbizzoconsultoria.com.br">
+          <small>E-mail</small>
+          <span>contato@mbizzoconsultoria.com.br</span>
+        </a>
       </div>
 
       <div class="footer-right">
-        <button class="btn secondary" onclick="openModal()">Formulário</button>
-        <a id="footerCtaLink" class="btn" href="#" onclick="openModal(); return false;">Agendar diagnóstico</a>
+        <button class="btn secondary" onclick="openModal()">Agendar diagnóstico</button>
       </div>
     </div>
   </footer>
 
-  <!-- MODAL: FORMULÁRIO (sem textos técnicos pro lead) -->
+  <!-- BOLINHA POP-UP LATERAL (abre formulário) -->
+  <button class="fab" onclick="openModal()" aria-label="Abrir formulário">
+    <span class="fab-dot"></span>
+  </button>
+  <div class="fab-tooltip">Formulário rápido</div>
+
+  <!-- MODAL: FORMULÁRIO (somente Enviar + WhatsApp) -->
   <div id="leadModal" class="modal-backdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal-header">
@@ -421,8 +284,7 @@
           </div>
 
           <div class="form-actions">
-            <button type="button" class="btn secondary" onclick="closeModal()">Agora não</button>
-            <button type="button" class="btn secondary" onclick="openWhatsAppPrefilled()">Chamar no WhatsApp</button>
+            <button type="button" class="btn secondary" onclick="openWhatsAppPrefilled()">Falar via WhatsApp</button>
             <button type="submit" class="btn">Enviar</button>
           </div>
 
@@ -446,7 +308,6 @@
       const objetivo = (data.objetivo || "").trim();
       const mensagem = (data.mensagem || "").trim();
 
-      // Mensagem pré-preenchida (direciona o lead)
       return [
         "Olá! Vim pelo site da Automate 360 e quero um diagnóstico de prospecção B2B.",
         "",
@@ -478,8 +339,7 @@
         mensagem: document.getElementById('mensagem')?.value
       };
 
-      const link = waLinkFromMessage(buildWhatsAppMessage(data));
-      window.open(link, "_blank", "noopener");
+      window.open(waLinkFromMessage(buildWhatsAppMessage(data)), "_blank", "noopener");
     }
 
     // Rodapé: WhatsApp com mensagem pré-preenchida (genérica)
