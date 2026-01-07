@@ -20,6 +20,7 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--light); scroll-behavior: smooth; }
+    body.modal-open { overflow: hidden; }
 
     .section { padding: 100px 20px; display: flex; justify-content: center; border-bottom: 1px solid var(--border); }
     .container { max-width: 1100px; width: 100%; }
@@ -37,13 +38,28 @@
 
     /* Comparison Section */
     .comparison-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
-    .email-box { border-radius: 16px; padding: 30px; position: relative; font-size: 0.95rem; border: 1px solid var(--border); height: 100%; }
+
+    .email-box { border-radius: 18px; padding: 30px; position: relative; font-size: 0.95rem; border: 1px solid var(--border); height: 100%; }
     .email-box.old { background: #fff1f2; border-top: 6px solid var(--error); }
     .email-box.new { background: #f0fdf4; border-top: 6px solid var(--success); box-shadow: 0 10px 15px rgba(16, 185, 129, 0.1); }
-    .tag-status { position: absolute; top: 15px; right: 20px; padding: 4px 12px; border-radius: 12px; font-weight: 900; font-size: 0.75rem; }
+
+    .tag-status { position: absolute; top: 15px; right: 20px; padding: 6px 12px; border-radius: 999px; font-weight: 900; font-size: 0.75rem; }
     .tag-error { background: var(--error); color: white; }
     .tag-success { background: var(--success); color: white; }
-    .highlight-text { background: #dcfce7; color: #166534; font-weight: 800; padding: 2px 4px; border-radius: 4px; }
+
+    .email-title { font-weight: 900; color: var(--primary); margin-bottom: 14px; font-size: 1.05rem; }
+    .email-meta { color: #475569; font-weight: 700; line-height: 1.6; margin-bottom: 14px; }
+    .email-copy { background: rgba(255,255,255,0.65); border: 1px solid rgba(15,23,42,0.06); border-radius: 14px; padding: 14px; color: #0f172a; line-height: 1.6; }
+    .email-copy .hl { background: #dcfce7; color: #166534; font-weight: 900; padding: 2px 6px; border-radius: 6px; }
+    .email-result { margin-top: 14px; font-weight: 900; }
+    .email-result.bad { color: var(--error); }
+    .email-result.good { color: var(--success); }
+
+    .email-bullets { margin-top: 14px; display: grid; gap: 10px; }
+    .email-bullets li { list-style: none; display: flex; gap: 10px; align-items: flex-start; color: #0f172a; }
+    .dot { width: 10px; height: 10px; border-radius: 999px; margin-top: 7px; flex: 0 0 10px; }
+    .dot.bad { background: var(--error); }
+    .dot.good { background: var(--success); }
 
     /* Dashboard Focus Section */
     .dashboard-feature { background: var(--primary); color: white; border-radius: 24px; padding: 60px; margin-top: 50px; }
@@ -54,7 +70,7 @@
     /* Support Section */
     .support-banner { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 60px; border-radius: 24px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
 
-    /* Testimonials (flags alinhadas) */
+    /* Testimonials */
     .testimonials-wrap { margin-top: 55px; }
     .quote-card { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 30px; transition: .3s; position: relative; display:flex; flex-direction:column; min-height:220px; }
     .quote-card:hover { transform: translateY(-4px); box-shadow: 0 18px 24px -12px rgba(0,0,0,0.10); }
@@ -66,19 +82,20 @@
     .quote-tag.blue { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
     .quote-tag.gold { background: #fffbeb; color: #b45309; border-color: #fde68a; }
 
-    /* CTA Buttons */
+    /* Buttons */
     .btn { background: var(--accent); color: white; padding: 18px 26px; border-radius: 12px; text-decoration: none; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; transition: 0.25s; border: none; font-size: 1.05rem; cursor: pointer; }
     .btn:hover { transform: translateY(-1px); background: #1d4ed8; }
     .btn.secondary { background: transparent; color: var(--accent); border: 1px solid #bfdbfe; }
     .btn.secondary:hover { background: #eff6ff; }
 
-    /* Footer (texto simples, sem bordas, sem emojis) */
+    /* Footer (texto simples) */
     .footer { padding: 22px 20px; border-top: 1px solid var(--border); background: white; display: flex; justify-content: center; }
     .footer-inner { width: 100%; max-width: 1100px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     .footer-left { display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
     .footer-link { display: inline-flex; flex-direction: column; gap: 4px; color: var(--primary); text-decoration: none; }
     .footer-link small { color: #64748b; font-weight: 800; letter-spacing: .2px; }
     .footer-link span { font-weight: 900; }
+    .footer-right { display: flex; gap: 10px; flex-wrap: wrap; }
 
     /* Floating button (bolinha) */
     .fab { position: fixed; right: 22px; bottom: 22px; z-index: 9998; width: 56px; height: 56px; border-radius: 999px; background: var(--accent); border: none; cursor: pointer; box-shadow: 0 18px 35px rgba(37,99,235,.35); display: flex; align-items: center; justify-content: center; transition: .2s; }
@@ -106,14 +123,83 @@
     .form-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; justify-content: flex-end; align-items: center; border-top: 1px solid var(--border); padding-top: 16px; }
     .form-actions .btn { padding: 14px 18px; font-size: 1rem; }
 
-    @media (max-width: 900px) {
-      h1 { font-size: 2.8rem; }
-      .grid-2, .comparison-container, .support-banner { grid-template-columns: 1fr; flex-direction: column; }
-      .dashboard-feature { padding: 30px; }
-      .form-grid { grid-template-columns: 1fr; }
-      .footer-inner { justify-content: center; text-align: center; }
-      .form-actions { justify-content: center; }
+    /* =========================================================
+       MOBILE PATCH (responsivo + comparativo mais legível)
+       ========================================================= */
+    html { -webkit-text-size-adjust: 100%; }
+    body { overflow-x: hidden; }
+    a, button { -webkit-tap-highlight-color: transparent; }
+    input, select, textarea, button { font-size: 16px; } /* evita zoom iOS */
+
+    @media (max-width: 1100px) {
+      .container { padding: 0 6px; }
+    }
+
+    @media (max-width: 980px) {
+      .section { padding: 72px 16px; }
+      .grid-2 { grid-template-columns: 1fr; gap: 26px; }
+      .comparison-container { grid-template-columns: 1fr; gap: 18px; }
+      .support-banner { flex-direction: column; align-items: stretch; gap: 18px; }
+      .dashboard-feature { padding: 34px; margin-top: 26px; }
+      .tag-status { top: 12px; right: 12px; }
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 2.05rem; line-height: 1.12; letter-spacing: -0.5px; margin-bottom: 16px; }
+      h2 { font-size: 1.55rem; line-height: 1.15; margin-bottom: 14px; }
+      p { font-size: 1rem; }
+      .subtitle { font-size: 1.02rem; margin: 0 auto 28px; }
+      .section { padding: 56px 14px; }
+      .badge { font-size: .78rem; padding: 7px 12px; }
+
+      /* Comparativo: vira "cards escaneáveis" */
+      .email-box { padding: 18px; }
+      .tag-status { position: static; display: inline-flex; margin-bottom: 12px; }
+      .email-meta { font-size: .95rem; }
+      .email-copy { padding: 12px; }
+      .email-bullets { gap: 8px; }
+
+      .dashboard-feature { padding: 22px; border-radius: 18px; }
+      .support-banner { padding: 22px; border-radius: 18px; }
+
+      .quote-card { min-height: auto; padding: 20px; }
+      .footer { padding: 16px 14px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .footer-left { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .footer-right { width: 100%; }
+      .footer-right .btn { width: 100%; justify-content: center; }
+
+      .fab { right: 16px; bottom: 16px; width: 54px; height: 54px; }
       .fab-tooltip { display: none; }
+    }
+
+    @media (max-width: 720px) {
+      .modal-backdrop { padding: 12px; }
+      .modal {
+        max-width: 100%;
+        width: 100%;
+        border-radius: 18px;
+        max-height: calc(100dvh - 24px);
+        display: flex;
+        flex-direction: column;
+      }
+      .modal-header { padding: 16px 16px; }
+      .modal-body { padding: 16px; overflow: auto; }
+      .form-grid { grid-template-columns: 1fr; gap: 12px; }
+      textarea { min-height: 96px; }
+
+      .form-actions {
+        position: sticky;
+        bottom: 0;
+        background: white;
+        padding: 12px 0 0;
+        margin-top: 14px;
+      }
+      .form-actions .btn { width: 100%; justify-content: center; }
+    }
+
+    @media (hover: none) {
+      .btn:hover { transform: none; }
     }
   </style>
 </head>
@@ -135,38 +221,63 @@
     </div>
   </section>
 
-  <!-- COMPARAÇÃO -->
+  <!-- COMPARAÇÃO (melhor para mobile) -->
   <section class="section" id="solucao" style="background: white;">
     <div class="container">
       <h2>Não é sobre mandar mais. É sobre <span style="color: var(--success);">ser respondido</span>.</h2>
       <p class="subtitle">
-        Prospeção que converte começa com contexto, não com “apresentação de serviços”.
-        Veja a diferença entre disparo genérico e abordagem que abre conversa.
+        O que muda o jogo não é volume. É contexto + mensagem que parece humana + uma pergunta simples.
       </p>
 
       <div class="comparison-container">
+        <!-- OLD -->
         <div class="email-box old">
           <span class="tag-status tag-error">PROSPECÇÃO COMUM</span>
-          <p><strong>De:</strong> Vendas Genéricas<br>
-          <strong>Assunto:</strong> Apresentação de Serviços</p><br>
-          <p>“Olá, tudo bem? Somos especialistas e temos os melhores preços. Podemos agendar uma conversa para eu apresentar nossa empresa?”</p><br>
-          <p style="color: var(--error); font-weight: 900;">Resultado: ignorado, bloqueado ou “manda material”</p>
-          <p style="margin-top: 10px; color: #991b1b;">Problema: fala sobre você, sem mostrar que entendeu o cenário do lead.</p>
+
+          <div class="email-title">Aquele e-mail que todo mundo ignora</div>
+          <div class="email-meta">
+            De: Vendas Genéricas<br />
+            Assunto: Apresentação de Serviços
+          </div>
+
+          <div class="email-copy">
+            “Olá, tudo bem? Somos especialistas e temos os melhores preços.
+            Podemos agendar uma conversa para eu apresentar nossa empresa?”
+          </div>
+
+          <div class="email-result bad">Resultado: ignorado, bloqueado ou “manda material”.</div>
+
+          <ul class="email-bullets" aria-label="Por que não funciona">
+            <li><span class="dot bad"></span><span>Sem contexto: não mostra que entendeu o cenário do lead.</span></li>
+            <li><span class="dot bad"></span><span>Fala de você, não do problema que ele quer resolver.</span></li>
+            <li><span class="dot bad"></span><span>CTA genérico: parece “mais do mesmo”.</span></li>
+          </ul>
         </div>
 
+        <!-- NEW -->
         <div class="email-box new">
           <span class="tag-status tag-success">MÉTODO AUTOMATE 360</span>
-          <p><strong>De:</strong> Sua Empresa<br>
-          <strong>Assunto:</strong> Uma pergunta sobre a {{Empresa_Lead}}</p><br>
-          <p>
-            “Olá, {{Nome}}.<br><br>
-            <span class="highlight-text">Vi no site de vocês que abriram um novo CD em Jundiaí…</span><br><br>
-            Em empresas nessa fase, costuma aparecer um gargalo: o time comercial precisa manter volume sem perder personalização —
-            e isso vira retrabalho ou silêncio.<br><br>
+
+          <div class="email-title">Abordagem que abre conversa (mesmo com time pequeno)</div>
+          <div class="email-meta">
+            De: Sua Empresa<br />
+            Assunto: Uma pergunta sobre a {{Empresa_Lead}}
+          </div>
+
+          <div class="email-copy">
+            “Olá, {{Nome}}.<br/><br/>
+            <span class="hl">Vi no site de vocês que abriram um novo CD em Jundiaí…</span><br/><br/>
+            Em empresas nessa fase, costuma surgir um gargalo: manter prospecção ativa sem perder personalização.<br/><br/>
             Se eu te mostrar em 10 minutos um modelo simples de cadência + qualificação que gera resposta, faz sentido pra você?”
-          </p><br>
-          <p style="color: var(--success); font-weight: 900;">Resultado: conversa real e chance de reunião</p>
-          <p style="margin-top: 10px; color: #166534;">Diferencial: contexto + hipótese + convite curto.</p>
+          </div>
+
+          <div class="email-result good">Resultado: resposta real, conversa aberta e chance de reunião.</div>
+
+          <ul class="email-bullets" aria-label="Por que funciona">
+            <li><span class="dot good"></span><span>Contexto + observação real: o lead sente que foi “visto”.</span></li>
+            <li><span class="dot good"></span><span>Hipótese prática: você mostra que entende o momento dele.</span></li>
+            <li><span class="dot good"></span><span>CTA curto: fácil dizer “sim” ou “não”.</span></li>
+          </ul>
         </div>
       </div>
 
@@ -314,7 +425,7 @@
     </div>
   </section>
 
-  <!-- RODAPÉ (texto simples) -->
+  <!-- RODAPÉ -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-left">
@@ -341,7 +452,7 @@
   </button>
   <div class="fab-tooltip">Formulário rápido</div>
 
-  <!-- MODAL: FORMULÁRIO (somente Enviar + WhatsApp) -->
+  <!-- MODAL -->
   <div id="leadModal" class="modal-backdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="modal-header">
@@ -460,7 +571,7 @@
     }
 
     // Rodapé: WhatsApp com mensagem pré-preenchida genérica
-    (function initFooterWhatsApp(){
+    (function initFooterWhatsApp() {
       const message = buildWhatsAppMessage({
         mensagem: "Quero entender como montar uma máquina de prospecção B2B com estrutura enxuta."
       });
@@ -472,18 +583,25 @@
       const el = document.getElementById('leadModal');
       el.style.display = 'flex';
       el.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+
+      const body = el.querySelector('.modal-body');
+      if (body) body.scrollTop = 0;
     }
 
     function closeModal() {
       const el = document.getElementById('leadModal');
       el.style.display = 'none';
       el.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
     }
 
+    // Fecha modal ao clicar fora
     document.getElementById('leadModal').addEventListener('click', function (e) {
       if (e.target === this) closeModal();
     });
 
+    // ESC fecha
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeModal();
     });
